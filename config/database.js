@@ -6,7 +6,7 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'rh - nodejs'
+    database: 'taller_nodejs_sa_cv'
 });
 
 pool.query = util.promisify(pool.query);
