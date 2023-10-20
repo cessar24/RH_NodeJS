@@ -1,5 +1,5 @@
 {
-  "name": "express-workshop",
+  "name": "RH_NODEJS",
   "version": "1.0.0",
   "description": "this is a project for the node.js workshop",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cessar24/express_workshop.git"
+    "url": "git+https://github.com/cessar24/RH_NodeJS.git"
   },
   "keywords": [
     "api",
@@ -17,12 +17,12 @@
     "express",
     "nodejs"
   ],
-  "author": "Cesar Sanchez",
+  "author": "Cesar Sanchez and Manuel Feregrino",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cessar24/express_workshop/issues"
+    "url": "https://github.com/cessar24/RH_NodeJS.git/issues"
   },
-  "homepage": "https://github.com/cessar24/express_workshop#readme",
+  "homepage": "https://github.com/cessar24/RH_NodeJS.git#readme",
   "dependencies": {
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
