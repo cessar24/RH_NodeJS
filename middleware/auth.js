@@ -7,6 +7,6 @@ module.exports = (req, res, next) =>{
         next();
     } 
     catch (error) {
-        res.status(401).json({ code: 401, message: "No tienes permiso :("});
+        res.status(401).json({ code: 401, message: "No tienes permiso de acceso"});
     }
 }
