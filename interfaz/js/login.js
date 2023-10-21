@@ -2,11 +2,7 @@ window.onload = init;
 
 function init() {
     if(!localStorage.getItem("token")){
-        document.querySelector('.btn-secondary').addEventListener('click', function(){
-            window.location.href = "signin.html"
-        });
-
-        document.querySelector('.btn-primary').addEventListener('click', login);
+         document.querySelector('.btn-primary').addEventListener('click', login);
     }
     else{
         window.location.href ="pokedex.html";
@@ -19,22 +15,23 @@ function login() {
 
     console.log(mail, pass);
 
-    axios ({
+    axios({
         method: 'post',
         url: 'http://localhost:3000/user/login',
         data: {
             user_mail: mail,
             user_password: pass
-        }
-        .then(function(res) {
+            }
+    }).then(function (res) {
             if(res.data.code == 200){
                 localStorage.setItem("token", res.data.message);
+                window.location.href ="pokedex.html";
             }
             else{
                 alert("usuario y/o contraseña incorrectos")
             }
-        }).catch(function(err) {
+    }).catch(function(err) {
             console.log(err);
-        })
     })
+
 }

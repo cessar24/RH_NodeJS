@@ -8,7 +8,7 @@ user.post("/signin", async (req, res, next) => {
 
     if(user_name && user_surnames && user_mail && user_password){
         let query = "INSERT INTO user(user_name, user_surnames, user_tel, user_mail, user_password, user_direcc, type_Uss) ";
-        query += `VALUES ('${user_name}','${user_surnames}','${user_tel}', '${user_mail}', '${user_password}', '${user_direcc}', '${type_Uss}',)`;
+        query += `VALUES ('${user_name}','${user_surnames}','${user_tel}', '${user_mail}', '${user_password}', '${user_direcc}', '${type_Uss}');`;
         const rows = await db.query(query);
 
         if(rows.affectedRows == 1){
@@ -36,7 +36,7 @@ user.post("/login", async (req, res, next) => {
             return res.status(200).json({ code: 401, message: "usuario y/o contraseña incorrectos"});
         }
     }
-    return res.status(500).json({ code: 500, message: "campos incompletos"});
+    return res.status(200).json({ code: 500, message: "campos incompletos"});
 });
 
 user.get("/", async (req, res, next) => {
