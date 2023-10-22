@@ -20,7 +20,7 @@ app.get("/", index);
 
 app.use("/user", user);
 app.use(auth);
-app.use("/pokemon", rrhh);
+app.use("/recursosH", rrhh);
 
 app.use(notFound);
 
