@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const express = require('express');
 const app = express();
 //routes
-const pokemon = require('./routes/pokemon');
+const rrhh = require('./routes/taller_nodejs_sa_cv');
 const user = require('./routes/user');
 //middleware
 const auth = require('./middleware/auth');
@@ -20,7 +20,7 @@ app.get("/", index);
 
 app.use("/user", user);
 app.use(auth);
-app.use("/pokemon", pokemon);
+app.use("/pokemon", rrhh);
 
 app.use(notFound);
 
