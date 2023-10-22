@@ -18,9 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", index);
 
-app.use("/user", user);
+app.use("/usuarios", usuarios);
 app.use(auth);
-app.use("/recursosH", rrhh);
+app.use("/empleados", empleados);
 
 app.use(notFound);
 
