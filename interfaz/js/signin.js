@@ -1,12 +1,14 @@
 window.onload = init;
 
 function init() {
+
     document.querySelector('.btn-primary').addEventListener('click', signin);
 
     
 }
 
 function signin() {
+    console.log("estas en siging");
     var name = document.getElementById('input-name').value;
     var lastname = document.getElementById('input-lastname').value;
     var tel = document.getElementById('input-phone').value;
@@ -28,7 +30,6 @@ function signin() {
         }).then(function(res) {
             console.log(res);
             alert("registro exitoso");
-            window.location.href = "admin.html";
         }).catch(function(err) {
             console.log(err);
         })
