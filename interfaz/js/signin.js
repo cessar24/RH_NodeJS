@@ -1,10 +1,18 @@
 window.onload = init;
+var headers = {};
 
-function init() {
-
-    document.querySelector('.btn-primary').addEventListener('click', signin);
-
-    
+function init (){
+    if(localStorage.getItem("token")){
+        headers = {
+            headers:{
+                'Authorization' : "bearer" + localStorage.getItem("token")
+            }
+        }
+        document.querySelector('.btn-primary').addEventListener('click', signin);
+    }
+    else{
+        window.location.href = "index.html";
+    }
 }
 
 function signin() {

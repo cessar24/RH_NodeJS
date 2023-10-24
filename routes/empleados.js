@@ -11,7 +11,7 @@ empleados.post("/Registrar", async (req, res, next) => {
 
         const rows = await db.query(query);
         console.log(rows);
-        if(rows.affectedRows == 1){
+        if(rows.affectedRows >= 1){
             return res.status(201).json({ code: 201, message:"Empleado insertado correctamente"});
         }
         return res.status(500).json({ code: 500, message: "Ocurrio un error"});
