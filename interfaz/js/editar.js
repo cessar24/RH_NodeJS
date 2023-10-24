@@ -33,15 +33,15 @@ function displayEmpleado(empleados){
     for(var i = 0; i < empleados.length; i++){
         var id = i+1;
         tabla.innerHTML +=`<tr><p>${empleados[i].Nombre} ${empleados[i].Apellido} ${empleados[i].Telefono}
-        ${empleados[i].Correo} ${empleados[i].Direccion}<button class="btn btn-primary" id='${id}'>Eliminar</button></p></tr>`;
+        ${empleados[i].Correo} ${empleados[i].Direccion}<button class="btn btn-primary" id='${id}'>Editar</button></p></tr>`;
     }
-    document.querySelector('.btn-primary').addEventListener('click', eliminar);
+    document.querySelector('.btn-primary').addEventListener('click', Editar);
 }
-function eliminar(){
-        var id = document.getElementById('1').value;
+function Editar(){
+        var id = document.getElementById('').value;
         console.log("estamos dentro de la consulta");
         axios({
-            method: 'delete',
+            method: 'put',
             url: 'http://localhost:3000/empleados/'+ id,
             data: {
                 id: id,

@@ -66,10 +66,11 @@ empleados.get('/Empleados', async (req, res, next) => {
     return res.status(200).json({ code: 1, message: empld });
 });
 
-empleados.get('/:id ([0-9]{1,5})', async (req, res, next) => {
-    const idEmp = req.params.id;
-    if (idEmp >= 1 && idEmp <= 10000) {
-        const empld = await db.query("SELECT * FROM empleados WHERE IdEmpleado="+id+";");
+empleados.get("/:id([0-9]{1,5})", async (req, res, next) => {
+    const Id = req.params.id;
+    console.log(Id+"estas en el buscador")
+    if (Id >= 1 && Id <= 10000) {
+        const empld = await db.query("SELECT * FROM empleados WHERE IdEmpleado='"+Id+"';");
         return res.status(200).json({ code: 200, message: empld });
     }
     return res.status(404).send({code: 404, message: "Empleado no encontrado" });
