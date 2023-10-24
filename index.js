@@ -3,8 +3,8 @@ const morgan = require('morgan');
 const express = require('express');
 const app = express();
 //routes
-const rrhh = require('./routes/taller_nodejs_sa_cv');
-const user = require('./routes/user');
+const empleados = require('./routes/empleados');
+const usuarios = require('./routes/usuarios');
 //middleware
 const auth = require('./middleware/auth');
 const notFound = require('./middleware/notFound');
@@ -19,8 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", index);
 
 app.use("/usuarios", usuarios);
-app.use(auth);
 app.use("/empleados", empleados);
+app.use(auth);
+
 
 app.use(notFound);
 

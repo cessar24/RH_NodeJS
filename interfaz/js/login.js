@@ -5,27 +5,27 @@ function init() {
          document.querySelector('.btn-primary').addEventListener('click', login);
     }
     else{
-        window.location.href ="pokedex.html";
+        window.location.href ="admin.html";
     }
 }
 
 function login() {
-    var mail = document.getElementById('input-mail').value;
-    var pass = document.getElementById('input-password').value;
+    var Correo = document.getElementById('input-mail').value;
+    var Contraseña = document.getElementById('input-password').value;
 
-    console.log(mail, pass);
+    console.log(Correo, Contraseña);
 
     axios({
         method: 'post',
-        url: 'http://localhost:3000/user/login',
+        url: 'http://localhost:3000/usuarios/login',
         data: {
-            user_mail: mail,
-            user_password: pass
+            Correo: Correo,
+            Contraseña: Contraseña
             }
     }).then(function (res) {
             if(res.data.code == 200){
                 localStorage.setItem("token", res.data.message);
-                window.location.href ="pokedex.html";
+                window.location.href ="menuAdmin.html";
             }
             else{
                 alert("usuario y/o contraseña incorrectos")

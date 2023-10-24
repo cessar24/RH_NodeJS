@@ -1,34 +1,34 @@
 window.onload = init;
 
 function init() {
-    if(!localStorage.getItem("token")){    
-        document.querySelector('.btn-primary').addEventListener('click', signin);
-    }
-    else{
-        window.location.href ="pokedex.html";
-    }
+    document.querySelector('.btn-primary').addEventListener('click', signin);
+
     
 }
 
 function signin() {
     var name = document.getElementById('input-name').value;
+    var lastname = document.getElementById('input-lastname').value;
+    var tel = document.getElementById('input-phone').value;
     var mail = document.getElementById('input-mail').value;
-    var pass = document.getElementById('input-password').value;
+    var address = document.getElementById('input-address').value;
 
-    console.log(mail, pass);
+    console.log(name, lastname, tel, mail, address);
 
-    axios ({
+    axios({
         method: 'post',
-        url: 'http://localhost:3000/user/signin',
+        url: 'http://localhost:3000/empleados/Registrar',
         data: {
-            user_name: name,
-            user_mail: mail,
-            user_password: pass
+            Nombre: name,
+            Apellido: lastname,
+            Telefono: tel,
+            Correo: mail,
+            Direccion: address
             }
         }).then(function(res) {
             console.log(res);
             alert("registro exitoso");
-            window.location.href = "login.html";
+            window.location.href = "admin.html";
         }).catch(function(err) {
             console.log(err);
         })

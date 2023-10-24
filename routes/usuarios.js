@@ -21,11 +21,11 @@ usuarios.post("/signin", async (req, res, next) => {
 
 usuarios.post("/login", async (req, res, next) => {
     const {Correo, Contraseña} = req.body;
-    const query = `SELECT * FROM usuarios WHERE correo = '${Correo} AND contraseña = '${Contraseña}';`;
+    const query = `SELECT * FROM usuarios WHERE Correo = '${Correo}' AND Contraseña = '${Contraseña}';`;
     const rows = await db.query(query);
 
     if(Correo && Contraseña){
-        if(rows.lenght == 1){
+        if(rows.lenght = 1){
             const token = jwt.sign({
                 IdUsuario: rows[0].IdUsuario,
                Correo: rows[0].Correo

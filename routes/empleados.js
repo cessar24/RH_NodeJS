@@ -2,12 +2,12 @@ const express = require('express');
 const empleados = express.Router();
 const db = require('../config/database');
 
-empleados.post("/", async (req, res, next) => {
-    const {Nombre, Apellido, Telefono, Correo, Direccion } = req.body;
+empleados.post("/Registrar", async (req, res, next) => {
+    const {Nombre, Apellido, Correo, Telefono, Direccion } = req.body;
     
-    if( IdEmpleado && Nombre && Apellido && Telefono && Correo &&  Direccion ){
-        let query = "INSERT INTO empleado(Nombre, Apellido, Telefono, Correo, Direccion )";
-        query += ` VALUES('${Nombre}', ${Apellido}, ${Telefono}, ${Correo}, ${Direccion})`;
+    if( Nombre && Apellido && Telefono && Correo &&  Direccion ){
+        let query = "INSERT INTO empleados(Nombre, Apellido, Telefono, Correo, Direccion )";
+        query += ` VALUES('${Nombre}', '${Apellido}', '${Telefono}', '${Correo}', '${Direccion}')`;
 
         const rows = await db.query(query);
         console.log(rows);
@@ -19,8 +19,8 @@ empleados.post("/", async (req, res, next) => {
     return res.status(500).json({ code: 500, message: "Campos incompletos"});
 });
 
-empleados.delete("/:id([0-9]{1,5})", async (req, res, next) => {
-    const query = `DELETE FROM empleados WHERE IdEmpleado = ${req.params.id}`;
+empleados.delete("/:id([0-9]{1,5)", async (req, res, next) => {
+    const query = `DELETE FROM empleados WHERE IdEmpleado = '${req.params.id}'`;
     const rows = await db.query(query);
 
     if(rows.affectedRows == 1){
@@ -61,7 +61,7 @@ empleados.patch("/:id([0-9]{1,3})", async (req, res, next) =>{
     return res.status(500).json({code: 500, message:"Campos incompletos"});
 });
 
-empleados.get('/', async (req, res, next) => {
+empleados.get('/Empleados', async (req, res, next) => {
     const empld = await db.query("SELECT * FROM empleados");
     return res.status(200).json({ code: 1, message: empld });
 });
