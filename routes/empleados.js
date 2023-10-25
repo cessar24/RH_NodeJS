@@ -35,7 +35,7 @@ empleados.put("/:id([0-9]{1,5})", async (req, res, next) =>{
 
     if( Nombre && Apellido && Telefono && Correo &&  Direccion  ){
         let query = `UPDATE empleados SET Nombre ='${Nombre}', Apellido =${Apellido},`;
-        query += `Telefono =${Telefono}, Correo =${Correo} WHERE IdEmpleado=${req.params.id};`;
+        query += `Telefono =${Telefono}, Correo =${Correo} WHERE IdEmpleado ='${req.params.id};'`;
 
         const rows = await db.query(query);
         console.log(rows);
