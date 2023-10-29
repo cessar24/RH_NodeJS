@@ -1,4 +1,3 @@
-
 window.onload = init;
 var headers = {};
 var url = "http://localhost:3000/empleados/";

@@ -33,10 +33,11 @@ empleados.delete("/:id([0-9]{1,5})", async (req, res, next) => {
 
 empleados.put("/:id([0-9]{1,5})", async (req, res, next) =>{
     const {Nombre, Apellido,Telefono, Correo, Direccion } = req.body;
+    console.log("estas en el editor");
 
     if( Nombre && Apellido && Telefono && Correo &&  Direccion  ){
-        let query = `UPDATE empleados SET Nombre ='${Nombre}', Apellido =${Apellido},`;
-        query += `Telefono =${Telefono}, Correo =${Correo} WHERE IdEmpleado=${req.params.id};`;
+        let query = `UPDATE empleados SET Nombre ='${Nombre}', Apellido ='${Apellido}',`;
+        query += `Telefono ='${Telefono}', Correo ='${Correo}' WHERE IdEmpleado='${req.params.id}';`;
 
         const rows = await db.query(query);
         console.log(rows);

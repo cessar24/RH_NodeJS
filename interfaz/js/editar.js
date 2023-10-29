@@ -1,45 +1,63 @@
 window.onload = init;
 var headers = {};
-var url = "http://localhost:3000/empleados";
-var id ;
+var url = "http://localhost:3000/empleados/";
 
 function init (){
-    if(localStorage.getItem("token")){
+    /*if(localStorage.getItem("token")){
         headers = {
             headers:{
                 'Authorization' : "bearer" + localStorage.getItem("token")
             }
         }
-        loadEmpleados();
+
         
     }
     else{
         window.location.href = "index.html";
-    }
+    }*/
+    document.querySelector('.btn-primary').addEventListener('click', buscar);
+    document.querySelector('.btn-tertiary').addEventListener('click', Editar);
 }
 
+function buscar() {
+    var nombre = document.getElementById('input-id').value;
 
-function loadEmpleados(){
-    axios.get(url +"/Empleados", headers
-    ).then(function(res) {
-        console.log(res);
-        displayEmpleado(res.data.message);
+    axios({
+        method: 'get',
+        url: url +nombre,
+        data: {
+            Nombre: nombre,
+            }
+    }).then(function (res) {
+            if(res.data.code == 200){
+                console.log(res);
+                displayEmpleado(res.data.message);
+            }
+            else{
+                console.log("no existe");
+                alert("no existe este empleado");
+            }
     }).catch(function(err) {
-        console.log(err);
+            console.log(err);
     })
+
 }
 
-function displayEmpleado(empleados){
+function displayEmpleado(empleados) {
+    console.log(empleados, "display empleados");
     var tabla = document.getElementById('tabla');
-    for(var i = 0; i < empleados.length; i++){
-        id = i+1;
-        tabla.innerHTML +=`<tr><p>${empleados[i].Nombre} ${empleados[i].Apellido} ${empleados[i].Telefono}
-        ${empleados[i].Correo} ${empleados[i].Direccion}<button class="btn btn-primary" id='${id}'>Editar</button></p></tr>`;
+    tabla.innerHTML = ''; // Limpia el contenido de la tabla
 
-        var boton = document.getElementById(id);
-        document.querySelector('.btn-secondary').addEventListener('click', Editar);
+    for (var i = 0; i < empleados.length; i++) {
+        tabla.innerHTML += `<tr><p>${empleados[i].Nombre} ${empleados[i].Apellido} ${empleados[i].Telefono}
+        ${empleados[i].Correo} ${empleados[i].Direccion}</p><button id="btn_modal" class="btn btn-secondary">Editar</button></tr>`;
+
+        document.querySelector('.btn-secondary').addEventListener('click', modal);
     }
-        var modal = document.getElementById("ventanaModal");
+}
+function modal(){
+    var boton = document.getElementById("btn_modal");
+    var modal = document.getElementById("ventanaModal");
         // Botón que abre el modal
         // Hace referencia al elemento <span> que tiene la X que cierra la ventana
         var span = document.getElementsByClassName("cerrar")[0];
@@ -57,11 +75,9 @@ function displayEmpleado(empleados){
             modal.style.display = "none";
         }
         });
-    
-
 }
 function Editar() {
-    console.log("estas en el editor");
+    var id = document.getElementById('input-id').value;
     var name = document.getElementById('input-name').value;
     var lastname = document.getElementById('input-lastname').value;
     var tel = document.getElementById('input-phone').value;
@@ -72,7 +88,7 @@ function Editar() {
 
     axios({
         method: 'put',
-        url: 'http://localhost:3000/empleados/'+ id,
+        url: url + id,
         data: {
             Nombre: name,
             Apellido: lastname,
@@ -82,9 +98,10 @@ function Editar() {
             }
         }).then(function(res) {
             console.log(res);
-            alert("registro exitoso");
+            alert("actualizacion exitosa");
         }).catch(function(err) {
             console.log(err);
         })
     
 }
+
