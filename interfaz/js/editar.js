@@ -3,20 +3,20 @@ var headers = {};
 var url = "http://localhost:3000/empleados/";
 
 function init (){
-    /*if(localStorage.getItem("token")){
+    if(localStorage.getItem("token")){
         headers = {
             headers:{
                 'Authorization' : "bearer" + localStorage.getItem("token")
             }
         }
 
-        
+        document.querySelector('.btn-primary').addEventListener('click', buscar);
+        document.querySelector('.btn-tertiary').addEventListener('click', Editar);
     }
     else{
         window.location.href = "index.html";
-    }*/
-    document.querySelector('.btn-primary').addEventListener('click', buscar);
-    document.querySelector('.btn-tertiary').addEventListener('click', Editar);
+    }
+
 }
 
 function buscar() {
