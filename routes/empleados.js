@@ -19,8 +19,9 @@ empleados.post("/Registrar", async (req, res, next) => {
     return res.status(500).json({ code: 500, message: "Campos incompletos"});
 });
 
-empleados.delete("/:id([0-9]{1,5)", async (req, res, next) => {
-    const query = `DELETE FROM empleados WHERE IdEmpleado = '${req.params.id}'`;
+empleados.delete("/:id([0-9]{1,5})", async (req, res, next) => {
+    const Id = req.params.id;
+    const query = `DELETE FROM empleados WHERE IdEmpleado = '${Id}';`;
     const rows = await db.query(query);
 
     if(rows.affectedRows == 1){
@@ -35,7 +36,7 @@ empleados.put("/:id([0-9]{1,5})", async (req, res, next) =>{
 
     if( Nombre && Apellido && Telefono && Correo &&  Direccion  ){
         let query = `UPDATE empleados SET Nombre ='${Nombre}', Apellido =${Apellido},`;
-        query += `Telefono =${Telefono}, Correo =${Correo} WHERE IdEmpleado ='${req.params.id};'`;
+        query += `Telefono =${Telefono}, Correo =${Correo} WHERE IdEmpleado=${req.params.id};`;
 
         const rows = await db.query(query);
         console.log(rows);
