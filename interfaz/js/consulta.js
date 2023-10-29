@@ -13,13 +13,13 @@ function init() {
 }
 
 function buscar() {
-    var id = document.getElementById('input-id').value;
+    var nombre = document.getElementById('input-nombre').value;
 
     axios({
         method: 'get',
-        url: url +id,
+        url: url +nombre,
         data: {
-            Id: id,
+            Nombre: nombre,
             }
     }).then(function (res) {
             if(res.data.code == 200){
@@ -36,11 +36,13 @@ function buscar() {
 
 }
 
-function displayEmpleado(empleados){
-    console.log(empleados,"display empleados");
+function displayEmpleado(empleados) {
+    console.log(empleados, "display empleados");
     var tabla = document.getElementById('tabla');
-    for(var i = 0; i < empleados.length; i++){
-        tabla.innerHTML +=`<tr><p>${empleados[i].Nombre} ${empleados[i].Apellido} ${empleados[i].Telefono}
+    tabla.innerHTML = ''; // Limpia el contenido de la tabla
+
+    for (var i = 0; i < empleados.length; i++) {
+        tabla.innerHTML += `<tr><p>${empleados[i].Nombre} ${empleados[i].Apellido} ${empleados[i].Telefono}
         ${empleados[i].Correo} ${empleados[i].Direccion}</p></tr>`;
     }
 }
